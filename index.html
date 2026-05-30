@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Untuk Kamu ❤️ - Special Website</title>
     <style>
-        /* (SAMA KAYAK DI ATAS, GA BERUBAH) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             min-height: 100vh;
@@ -27,7 +26,10 @@
         .photo:hover { transform: scale(1.05); border-color: #ff4757; }
         .photo-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(255,107,107,0.3), transparent); animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; } 100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; } }
-        .name { text-align: center; font-size: 32px; font-weight: bold; background: linear-gradient(135deg, #667eea, #764ba2, #f093fb); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 10px; letter-spacing: 1px; }
+        .name-wrapper { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+        .name-text { font-size: 28px; font-weight: 500; color: #4a4a4a; }
+        .name-highlight { font-size: 32px; font-weight: bold; background: linear-gradient(135deg, #667eea, #764ba2, #f093fb); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .name-heart { font-size: 28px; display: inline-block; animation: pulse 1s infinite; }
         .quote { text-align: center; font-size: 16px; color: #888; font-style: italic; margin-bottom: 25px; }
         .love-message { background: linear-gradient(135deg, #ff9a9e, #fecfef, #ffd6e0); padding: 25px; border-radius: 25px; margin: 20px 0; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .love-message p { color: #333; font-size: 16px; line-height: 1.8; }
@@ -66,7 +68,7 @@
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: white; border-radius: 30px; padding: 30px; max-width: 300px; text-align: center; animation: modalPop 0.3s ease-out; }
         @keyframes modalPop { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        @media (max-width: 500px) { .container { padding: 15px; } .name { font-size: 26px; } .gallery { grid-template-columns: repeat(2, 1fr); } .countdown-numbers { gap: 10px; } .countdown-box { min-width: 60px; padding: 8px 12px; } .countdown-value { font-size: 22px; } }
+        @media (max-width: 500px) { .container { padding: 15px; } .name-text, .name-heart { font-size: 22px; } .name-highlight { font-size: 26px; } .gallery { grid-template-columns: repeat(2, 1fr); } .countdown-numbers { gap: 10px; } .countdown-box { min-width: 60px; padding: 8px 12px; } .countdown-value { font-size: 22px; } }
     </style>
 </head>
 <body>
@@ -79,7 +81,14 @@
             <div class="photo-glow"></div>
             <img src="https://files.catbox.moe/nqfke5.jpg" alt="Foto Kamu" class="photo" id="profilePhoto">
         </div>
-        <div class="name">Untuk <span id="girlName">Khotimah</span> <span style="display: inline-block; animation: pulse 1s infinite;">❤️</span></div>
+        
+        <!-- NAMA - UDAH FIX SEJAJAR! -->
+        <div class="name-wrapper">
+            <span class="name-text">Untuk</span>
+            <span class="name-highlight" id="girlName">Khotimah</span>
+            <span class="name-heart">❤️</span>
+        </div>
+        
         <div class="quote">"Every love story is beautiful, but ours is my favorite"</div>
         <div class="love-message" id="loveMessage"></div>
         <div class="countdown">
@@ -118,7 +127,7 @@
     const startDate = new Date(2025, 4, 6);
     const loveMessage = `Hayooo, ini buat kamu! 💕\n\nAku gak tahu masa depan bakal kayak gimana, tapi aku tahu aku mau masa depanku sama kamu. 👫\n\nI LOVE YOU! 💖`;
     const reasons = ["💖 Kamu selalu ada buat aku", "🌞 Senyumanmu mencerahkan hari aku", "🎀 Kamu orangnya paling perhatian", "🍿 Seru banget kalau nonton bareng kamu", "💪 Kamu selalu support aku", "😊 Kamu bisa bikin aku happy setiap saat", "💭 Setiap hari mikirin kamu terus", "❤️ Karena kamu adalah kamu, gak ada yang bisa ganti"];
-    const memories = [{ emoji: "🎂", text: "Ulang Tahun" }];
+    const memories = [{ emoji: "🎂", text: "Ulang Tahun" }, { emoji: "👶", text: "Bikin anak 11" }];
     const profilePhoto = "https://files.catbox.moe/nqfke5.jpg";
     const musicUrl = "https://files.catbox.moe/gwdm5t.mp3";
     const surprises = [{ emoji: "💖", message: "Aku Sayang Kamu! 💖" }, { emoji: "✨", message: "Kamu Bikin Hidupku Indah ✨" }, { emoji: "🌹", message: "Kamu yang Terbaik! 🌹" }, { emoji: "💕", message: "Love You More Than Anything! 💕" }, { emoji: "🌟", message: "Kamu Istimewa! 🌟" }, { emoji: "🎀", message: "Gak Ada yang Kayak Kamu 🎀" }, { emoji: "💭", message: "Selalu Ada di Pikiran 💭" }, { emoji: "🌼", message: "Kamu Cantik Kayak Bunga 🌼" }, { emoji: "🦋", message: "Kamu Membuatku Bahagia 🦋" }, { emoji: "⭐", message: "Kamu adalah Bintangku ⭐" }];
